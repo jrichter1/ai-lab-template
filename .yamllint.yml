@@ -3,3 +3,8 @@ extends: default
 rules:
   line-length: disable
   new-line-at-end-of-file: disable
+  key-duplicates:
+    ignore: |
+      skeleton/template.yaml
+
+

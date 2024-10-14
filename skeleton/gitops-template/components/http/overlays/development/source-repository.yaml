@@ -4,7 +4,7 @@ metadata:
   name: ${{ values.name }}-repository
 spec:
   url: ${{ values.srcRepoURL }}
-  {%- if values.secretRef %}
+  # {%- if values.secretRef %}
   git_provider:
     secret:
         name: ${{ values.gitSecret }}
@@ -12,4 +12,4 @@ spec:
     webhook_secret:
         name: ${{ values.webhookSecret }}
         key:  ${{ values.webhookSecretKey }}
-  {%- endif %}
+  # {%- endif %}

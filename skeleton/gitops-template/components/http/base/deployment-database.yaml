@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: 
+  labels:
     app.kubernetes.io/instance: ${{ values.name }}-database
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: ${{ values.name }}-database
-    app.kubernetes.io/part-of: ${{ values.name }}  
+    app.kubernetes.io/part-of: ${{ values.name }}
   name: ${{ values.name }}-database
 spec:
   replicas: 1
@@ -13,14 +13,14 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: ${{ values.name }}-database
   template:
-    metadata: 
+    metadata:
       labels:
         app.kubernetes.io/instance: ${{ values.name }}-database
     spec:
       containers:
-      - image: ${{ values.dbContainer }}
-        name: database
-        args: [
+        - image: ${{ values.dbContainer }}
+          name: database
+          args: [
             "--workers",
             "1", 
             "--host", 
@@ -32,7 +32,7 @@ spec:
             "chromadb/log_config.yml", 
             "--timeout-keep-alive", 
             "30"]
-        ports:
-        - containerPort: ${{ values.dbPort }}
-        securityContext:
-          runAsNonRoot: true
+          ports:
+            - containerPort: ${{ values.dbPort }}
+          securityContext:
+            runAsNonRoot: true
