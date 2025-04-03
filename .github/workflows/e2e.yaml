@@ -26,3 +26,8 @@ jobs:
           cd e2e-tests
           npm install
           npm test
+      - uses: actions/upload-artifact@v4.6.2
+        with:
+          name: test-report
+          path: e2e-tests/artifacts/
+          retention-days: 7
