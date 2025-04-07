@@ -1,5 +1,7 @@
 name: E2E
 on:
+  schedule:
+    - cron: '14 4 * *  *'
   workflow_dispatch:
 
 jobs:
@@ -22,6 +24,8 @@ jobs:
           chmod +x oc
 
           ./oc login --server $OC_SERVER_URL --token $OC_LOGIN_TOKEN --insecure-skip-tls-verify
+          ./oc rollout restart -n ai-rhdh deployment backstage-ai-rh-developer-hub
+          ./oc rollout status -n ai-rhdh deployment backstage-ai-rh-developer-hub
 
           cd e2e-tests
           npm install
